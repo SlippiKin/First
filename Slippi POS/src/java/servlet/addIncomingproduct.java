@@ -77,7 +77,8 @@ public class addIncomingproduct extends HttpServlet {
         boolean checkExisting = false;
         int incoming = Integer.parseInt(request.getParameter("inquantity"));
         productdetail p1 = new productdetail();
-
+        p1.setLevel(request.getParameter("shelflevel"));
+        p1.setPoint(request.getParameter("shelfpoint"));
         p1.setBarcode(request.getParameter("code"));
         p1.setProname(request.getParameter("name"));
         p1.setCategory(request.getParameter("cat"));
@@ -111,6 +112,8 @@ public class addIncomingproduct extends HttpServlet {
                 product.setSellingprice(loopProduct.getSellingprice());
                 product.setShelflocation(loopProduct.getShelflocation());
                 product.setProname(loopProduct.getProname());
+                product.setLevel(loopProduct.getLocatelevel());
+                product.setPoint(loopProduct.getLocatecoordinate());
                 allProduct.add(product);
             }
             for (int ii = 0; ii < allProduct.size(); ii++) {

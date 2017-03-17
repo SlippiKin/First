@@ -155,7 +155,7 @@
                 document.getElementById(cityName).style.display = "block";
                 evt.currentTarget.className += " active";
             }
-            
+
             //disable enter to submit
             $(document).ready(function () {
                 $(window).keydown(function (event) {
@@ -197,12 +197,13 @@
                         var productimage = responseArray[7];
                         var category = responseArray[8];
                         var sname = responseArray[9];
+                        var level = responseArray[10];
+                        var point = responseArray[11];
                         var mark = ((parseFloat(sellingprice) - parseFloat(originalprice)) / parseFloat(originalprice)) * 100;
                         document.getElementById("name").value = proname;
                         document.getElementById("unit").value = originalprice;
                         document.getElementById("selling").value = sellingprice;
                         document.getElementById("orderlevel").value = minimumquantity;
-
                         document.getElementById("shelflocation").value = shelflocation;
                         document.getElementById("cquantity").value = currentquantity;
                         //document.getElementById("pic").value = productimage;
@@ -210,12 +211,16 @@
                         document.getElementById("supplier").value = sname;
                         document.getElementById("markup").value = mark;
                         document.getElementById("gst").value = gst;
+                        document.getElementById("shelfleve").value = level;
+                        document.getElementById("shelfpoint").value = point;
+                        
+                       
                     }
                 }
                 xmlhttp.open("GET", "searchForInventoryform?barcode=" + str, true);
                 xmlhttp.send();
             }
-            
+
             // call confirmation box if not valid input
             function validate(form) {
 
@@ -357,6 +362,10 @@
         <sql:query dataSource="${snapshot}" var="allProduct">
             SELECT * from product where id = '<%= session.getAttribute("username")%>';
         </sql:query> 
+        <sql:query dataSource="${snapshot}" var="allShelf">
+            SELECT * from floorplan where id = '<%= session.getAttribute("username")%>';
+        </sql:query>     
+
 
         <nav class="navbar navbar-inverse ">
 
@@ -437,7 +446,7 @@
                                 <td>${row.currentquantity}</td>
                                 <td>${row.category}</td>
                                 <td>${row.sname}</td>
-                                <td>${row.shelflocation}</td>
+                                <td>${row.shelflocation}.${row.locatelevel}.${row.locatecoordinate}</td>
                                 <td>${row.gst}</td>
                                 <td>${row.minimumquantity}</td>
                             </tr>
@@ -487,12 +496,27 @@
                                     <option value="exclude">Exclude</option>
 
                                 </select>
+                                <p> Supplier :</p> <input type="text" id="supplier" name="supplier" ><br/>
                             </div>
                             <div class="col-md-4">
-                                <p> Shelf Location :</p> <input type="text" id="shelflocation" name="shelflocation" >
                                 <p> Category :</p> <input type="text" id="cat" name="cat" >
-                                <p> Image :</p><input type="file" id="pic" name="pic" id="pic">
-                                <p> Supplier :</p> <input type="text" id="supplier" name="supplier" ><br/>
+                                <p> Location</p>
+                                <p>Shelf :</p>
+                                <select id="shelflocation" name="shelflocation">
+                                    <c:forEach var="row1" items="${allShelf.rows}">
+
+                                        <option value="${row1.shelfname}">${row1.shelfname}</option>
+
+
+                                    </c:forEach> 
+
+                                </select>
+                                <p></p>
+                                <p style="display:inline-block">Shelf Level</p> <input type="number" min="1" id="shelflevel" name="shelflevel" style="width:60px">
+                                <p style="display:inline-block">Point</p><input type="number" min="1" id="shelfpoint" name="shelfpoint" style="width:60px">
+                                
+                                
+                                
                                 <input type="submit" style="background-color: greenyellow" value="Save"/>
                             </div>
                             <input type="hidden" id="idn" name="idn" value="<%= session.getAttribute("username")%>"><br/>
@@ -528,7 +552,7 @@
                     <tbody>
                         <c:set var="count" value="0" scope="page" />
                         <c:forEach var="row" items="${allProduct.rows}">
-                            
+
                             <tr>
                                 <c:if test="${row.currentquantity <= row.minimumquantity}">
                                     <c:set var="count" value="${count + 1}" scope="page"/>

@@ -57,7 +57,8 @@ public class ProductSessionBean {
  
         Login loginid = em.getReference(Login.class, s.getId());
         Product t = new Product();
-        
+        t.setLocatelevel(s.getLevel());
+        t.setLocatecoordinate(s.getPoint());
         t.setBarcode(s.getBarcode());
         t.setCategory(s.getCategory());
         t.setCurrentquantity(s.getCurrentquantity());
@@ -86,6 +87,8 @@ public class ProductSessionBean {
         t.setGst(s.getGst());
         t.setMinimumquantity(s.getMinimumquantity());  
         t.setOriginalprice(s.getOriginalprice());
+        t.setLocatelevel(s.getLevel());
+        t.setLocatecoordinate(s.getPoint());
         //t.setProductimage(productimage);
         t.setProname(s.getProname());
         t.setSellingprice(s.getSellingprice());

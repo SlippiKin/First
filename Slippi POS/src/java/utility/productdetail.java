@@ -27,6 +27,24 @@ public class productdetail {
     private String sname;
     private String id;
     private int quantity;
+    private String level;
+    private String point;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getPoint() {
+        return point;
+    }
+
+    public void setPoint(String point) {
+        this.point = point;
+    }
 
     public int getQuantity() {
         return quantity;

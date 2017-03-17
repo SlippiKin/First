@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author blank
  */
 public class searchForInventoryform extends HttpServlet {
+
     private Object session;
 
     /**
@@ -40,7 +41,7 @@ public class searchForInventoryform extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet searchForInventoryform</title>");            
+            out.println("<title>Servlet searchForInventoryform</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet searchForInventoryform at " + request.getContextPath() + "</h1>");
@@ -64,47 +65,46 @@ public class searchForInventoryform extends HttpServlet {
         //processRequest(request, response);
         String barcode = request.getParameter("barcode");
         HttpSession session = request.getSession(true);
-        String name =  session.getAttribute("username").toString();
-        
+        String name = session.getAttribute("username").toString();
+
         PrintWriter out = response.getWriter();
 
-        String proname = "",originalprice="", sellingprice="",minimumquantity="",gst="", shelflocation="", 
-                    currentquantity="",productimage="",category="",sname=""; 
-                    
-                     
-         
-        
-        try
-        {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/pointofsales","root", "root");
-              
-                java.sql.Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("select * from product where barcode = '" + barcode + "' and id = '" + name + "'");
-                if(rs.next())
-                {
-                   proname=rs.getString("proname"); originalprice=rs.getString("originalprice"); sellingprice=rs.getString("sellingprice"); 
-                    minimumquantity=rs.getString("minimumquantity"); gst=rs.getString("gst"); shelflocation=rs.getString("shelflocation"); 
-                    currentquantity=rs.getString("currentquantity"); 
-                    productimage=rs.getString("productimage"); category=rs.getString("category"); sname=rs.getString("sname"); 
-                    
-                     
-                }
-                else 
-                    proname = "";
-              
-                response.getWriter().write(proname+","+originalprice+","+sellingprice+","
-                        +minimumquantity+","+gst+","+shelflocation+","+currentquantity+","
-                        +productimage+","+category+","+sname);
-                
+        String proname = "", originalprice = "", sellingprice = "", minimumquantity = "", gst = "", shelflocation = "",
+                currentquantity = "", productimage = "", category = "", sname = "", level = "", point = "";
 
-        }
-        catch(Exception e)
-        {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pointofsales", "root", "root");
+
+            java.sql.Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from product where barcode = '" + barcode + "' and id = '" + name + "'");
+            if (rs.next()) {
+                proname = rs.getString("proname");
+                originalprice = rs.getString("originalprice");
+                sellingprice = rs.getString("sellingprice");
+                minimumquantity = rs.getString("minimumquantity");
+                gst = rs.getString("gst");
+                shelflocation = rs.getString("shelflocation");
+                currentquantity = rs.getString("currentquantity");
+                productimage = rs.getString("productimage");
+                category = rs.getString("category");
+                sname = rs.getString("sname");
+                level = rs.getString("locatelevel");
+                point = rs.getString("locatecoordinate");
+
+            } else {
+                proname = "";
+            }
+
+            response.getWriter().write(proname + "," + originalprice + "," + sellingprice + ","
+                    + minimumquantity + "," + gst + "," + shelflocation + "," + currentquantity + ","
+                    + productimage + "," + category + "," + sname + "," + level + "," + point);
+
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
-        
+
     }
 
     /**

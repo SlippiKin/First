@@ -24,26 +24,29 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author blank
+ * @author INSPIRON 15
  */
 @Entity
 @Table(name = "product", catalog = "pointofsales", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findByNo", query = "SELECT p FROM Product p WHERE p.no = :no"),
-    @NamedQuery(name = "Product.findByBarcode", query = "SELECT p FROM Product p WHERE p.barcode = :barcode"),
-    @NamedQuery(name = "Product.findByidnbarcode", query = "SELECT p FROM Product p WHERE p.id = :id AND p.barcode = :barcode"),
-    @NamedQuery(name = "Product.findByProname", query = "SELECT p FROM Product p WHERE p.proname = :proname"),
-    @NamedQuery(name = "Product.findByOriginalprice", query = "SELECT p FROM Product p WHERE p.originalprice = :originalprice"),
-    @NamedQuery(name = "Product.findBySellingprice", query = "SELECT p FROM Product p WHERE p.sellingprice = :sellingprice"),
-    @NamedQuery(name = "Product.findByMinimumquantity", query = "SELECT p FROM Product p WHERE p.minimumquantity = :minimumquantity"),
-    @NamedQuery(name = "Product.findByGst", query = "SELECT p FROM Product p WHERE p.gst = :gst"),
-    @NamedQuery(name = "Product.findByShelflocation", query = "SELECT p FROM Product p WHERE p.shelflocation = :shelflocation"),
-    @NamedQuery(name = "Product.findByCurrentquantity", query = "SELECT p FROM Product p WHERE p.currentquantity = :currentquantity"),
-    @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category"),
-    @NamedQuery(name = "Product.findBySname", query = "SELECT p FROM Product p WHERE p.sname = :sname")})
+    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
+    , @NamedQuery(name = "Product.findByNo", query = "SELECT p FROM Product p WHERE p.no = :no")
+    ,  @NamedQuery(name = "Product.findByidnbarcode", query = "SELECT p FROM Product p WHERE p.id = :id AND p.barcode = :barcode")    
+    , @NamedQuery(name = "Product.findByBarcode", query = "SELECT p FROM Product p WHERE p.barcode = :barcode")
+    , @NamedQuery(name = "Product.findByProname", query = "SELECT p FROM Product p WHERE p.proname = :proname")
+    , @NamedQuery(name = "Product.findByOriginalprice", query = "SELECT p FROM Product p WHERE p.originalprice = :originalprice")
+    , @NamedQuery(name = "Product.findBySellingprice", query = "SELECT p FROM Product p WHERE p.sellingprice = :sellingprice")
+    , @NamedQuery(name = "Product.findByMinimumquantity", query = "SELECT p FROM Product p WHERE p.minimumquantity = :minimumquantity")
+    , @NamedQuery(name = "Product.findByGst", query = "SELECT p FROM Product p WHERE p.gst = :gst")
+    , @NamedQuery(name = "Product.findByShelflocation", query = "SELECT p FROM Product p WHERE p.shelflocation = :shelflocation")
+    , @NamedQuery(name = "Product.findByCurrentquantity", query = "SELECT p FROM Product p WHERE p.currentquantity = :currentquantity")
+    , @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category")
+    , @NamedQuery(name = "Product.findBySname", query = "SELECT p FROM Product p WHERE p.sname = :sname")
+    , @NamedQuery(name = "Product.findByLocatelevel", query = "SELECT p FROM Product p WHERE p.locatelevel = :locatelevel")
+    , @NamedQuery(name = "Product.findByLocatecoordinate", query = "SELECT p FROM Product p WHERE p.locatecoordinate = :locatecoordinate")})
 public class Product implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -99,6 +102,12 @@ public class Product implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "sname")
     private String sname;
+    @Size(max = 45)
+    @Column(name = "locatelevel")
+    private String locatelevel;
+    @Size(max = 45)
+    @Column(name = "locatecoordinate")
+    private String locatecoordinate;
     @JoinColumn(name = "id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Login id;
@@ -216,6 +225,22 @@ public class Product implements Serializable {
 
     public void setSname(String sname) {
         this.sname = sname;
+    }
+
+    public String getLocatelevel() {
+        return locatelevel;
+    }
+
+    public void setLocatelevel(String locatelevel) {
+        this.locatelevel = locatelevel;
+    }
+
+    public String getLocatecoordinate() {
+        return locatecoordinate;
+    }
+
+    public void setLocatecoordinate(String locatecoordinate) {
+        this.locatecoordinate = locatecoordinate;
     }
 
     public Login getId() {

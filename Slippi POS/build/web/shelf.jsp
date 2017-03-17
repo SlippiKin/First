@@ -40,7 +40,7 @@
                 bottom: 0;
                 left: 100%;
                 right: 0;
-                background-color: #008CBA;
+                background-color: WHITE;
                 overflow: hidden;
                 width: 0;
                 height: 100%;
@@ -131,10 +131,10 @@
             callingAjax();
             });
             function showShelf(data){
-                alert(data.id);
+            alert(data.id);
             }
             function callingAjax(){
-                $.ajax({
+            $.ajax({
             async: false,
                     url: "getFloorPlanFromAjax",
                     dataType: "text",
@@ -144,20 +144,19 @@
                     console.log("document ready AJAX Return " + JSON.stringify(jsonObj));
                     }
             });
-            var dataAjax = jsonObj.shelf;        
-            for ( var i in dataAjax) {
-                    var name= dataAjax[i].name;
-                    var level = dataAjax[i].level;
-                    var shape = dataAjax[i].shape;
-                    var location = dataAjax[i].location;
-
+            var dataAjax = jsonObj.shelf;
+            for (var i in dataAjax) {
+            var name = dataAjax[i].name;
+            var level = dataAjax[i].level;
+            var shape = dataAjax[i].shape;
+            var location = dataAjax[i].location;
             picture = document.createElement("img");
             console.log("shape --> " + shape);
             if ("vertical" === shape){
-                
+
             picture.setAttribute("src", "image/straight.png");
-            }else{
-                picture.setAttribute("src", "image/horizon.png");
+            } else{
+            picture.setAttribute("src", "image/horizon.png");
             }
             picture.setAttribute("ondblclick", "showShelf(this)");
             picture.setAttribute("draggable", "true");
@@ -201,8 +200,8 @@
             // clean target space if needed
 
             if ("deleteimg" === ev.target.id) {
-                
-                console.log("in if deteleimg that comapre ev.target " + JSON.stringify(jsonObj.shelf));
+
+            console.log("in if deteleimg that comapre ev.target " + JSON.stringify(jsonObj.shelf));
             jsonObj = deleteJson(jsonObj.shelf, "name", data);
             removeNode(document.getElementById(data));
             console.log("after delete left " + JSON.stringify(jsonObj));
@@ -278,6 +277,14 @@
             return false;
             }
             function addInform(nameOfShelf) {
+            var shelfname = nameOfShelf;
+            if (nameOfShelf === ""){
+            shelfname = prompt("Please do not leave blank for the name");
+            shelfname = addInform(shelfname);
+            }else if (nameOfShelf === " "){
+            shelfname = prompt("Please do not leave blank for the name");
+            shelfname = addInform(shelfname);
+            }
             var returnValue = true;
             var shelfname = nameOfShelf;
             jsonStr = JSON.stringify(jsonObj);
@@ -310,7 +317,7 @@
             }
             function deleteJson(object, key, value)
             {
-                console.log("delete de object " + object);
+            console.log("delete de object " + object);
             $.each(object, function (index)
             {
             $.each(this, function (k, v)
@@ -350,7 +357,7 @@
             }
             function editReplaceJson(object, key, value, location)
             {
-               console.log("in replace editreplace " + JSON.stringify(object)); 
+            console.log("in replace editreplace " + JSON.stringify(object));
             $.each(object, function (index)
             {
             $.each(this, function (k, v)
@@ -369,10 +376,10 @@
             return object;
             }
             function save() {
-                jsonStr = JSON.stringify(jsonObj);
-                jsonObj = JSON.parse(jsonStr);
-                jsonStr = JSON.stringify(jsonObj);
-                console.log("save obj " + jsonStr);
+            jsonStr = JSON.stringify(jsonObj);
+            jsonObj = JSON.parse(jsonStr);
+            jsonStr = JSON.stringify(jsonObj);
+            console.log("save obj " + jsonStr);
             var request = $.ajax({
             url: "saveFloorPlan?objectString=" + jsonStr,
                     type: "GET",
@@ -387,7 +394,7 @@
             }
 
         </script>
-        
+
 
     </head>
     <body ng-app="myApp">
