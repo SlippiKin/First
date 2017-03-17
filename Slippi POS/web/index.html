@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Slippi POS Login title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            document.getElementById("register").onclick = function () {
+                alert("Hello! I am an alert box!!");
+                location.href = "register.jsp";
+            };
+        </script>
+
+        <style>
+            #form_login {
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+            }
+            form {
+                margin:auto;/* nice thing of auto margin if display:flex; it center both horizontal and vertical :) */
+            }
+
+            html, body, div, span,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend {
+                background: transparent;
+                border: 0;
+                margin: 0;
+                padding: 0;
+                vertical-align: baseline;
+                font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+            }
+
+            h2 { font-size: 30px; line-height:38px; font-weight:normal; }
+            .loginbox { background: white; padding: 10px; width: 490px; margin: 4% auto 0 auto; position: relative; }
+            .loginboxinner {
+                background: #FBFCFD; padding: 5px; position: relative; border: 1px solid #FBFCFD;
+                -moz-box-shadow: inset 0 1px 0 #FBFCFD; -webkit-box-shadow: inset 0 1px 0 #FBFCFD; box-shadow: inset 0 1px 0 #FBFCFD;
+            }
+            .loginheader { height: 20px; }
+            .loginform { margin: 4px auto; text-align:center; }
+
+            .loginbox h1 { font-size: 30px; letter-spacing: 1px; color: #555; font-weight: normal; padding-top: 10px; }
+            .loginbox p { margin: 7px 0 5px 0; }
+            .loginbox label { display: block; color: #666; letter-spacing: 1px; font-size: 18px; }
+            .loginbox input.mini { width:195px; }
+            .loginbox input {
+                padding: 12px 10px; color: black;
+                font-family: Arial, Helvetica, sans-serif; margin-top: 8px; font-size: 15px; border: 1px solid #ccc; width: 420px;  outline: none;
+            }
+            .loginbox button {
+
+                background: #5870A8; background-image:-webkit-linear-gradient(top, #637BAD, #4F67A4); padding: 10px 20px; font-size: 18px; border: 1px solid #1D3871;letter-spacing: 1px; width: 420px; line-height:30px; font-family:	'Helvetica Neue', Helvetica, Arial, sans-serif;
+                -moz-box-shadow: 1px 1px 3px #1D3871; -webkit-box-shadow: 1px 1px 3px #1D3871; box-shadow: 1px 1px 3px #1D3871; cursor: pointer;
+            }
+
+            .radius { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+            .radius1 { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+            .title { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:black; line-height:28px; font-weight:normal; text-align:center; font-size:16px; }
+
+            @media screen and (max-width: 430px) {
+
+                body { font-size: 11px; }
+                button, input, select, textarea { font-size: 11px; }
+
+                .loginbox { width: auto; margin: 10px; }
+                .loginbox input { width: 95%; }
+                .loginbox button { width: 100%; }
+            }
+
+
+
+
+            #login_form .inputtext:hover {
+                border-color: #A0A0A0 #B9B9B9 #B9B9B9;
+                border-image: none;
+                border-style: solid;
+                border-width: 1px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+            }
+
+            #login_form table tr td {
+                padding: 0 0 0 5px;
+            }
+            #login_form table tr td label {
+                color: #fff;
+                cursor: pointer;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 12px;
+                font-weight: normal;
+                padding-left: 1px;
+                text-align: left;
+                vertical-align: middle;
+            }
+            .fbbutton { border:1px solid #1D3871; width:94px;background-image:-webkit-linear-gradient(top, #637BAD, #4F67A4); font-size:14px; line-height:25px; font-weight:normal; color:black; moz-border-radius: 15px;
+                        -webkit-border-radius: 15px;}
+            button {padding-bottom: 5px; margin-bottom: 5px}
+            button:hover{opacity: 0.8;}
+            input:hover{opacity: 0.8; }
+
+            img {display: block;
+                 margin-left: auto;
+                 margin-right: auto }
+
+        </style>
+
+    </head>
+    <body style="background-image: url(image/2.jpg); background-size: 100%;">
+        <!-- header starts here -->
+        <div class="container-fluid">
+            <div class="login">
+
+                <a href="index.html"><img src="image/slippi.png" alt=""/></a>
+
+
+                <div class="loginbox radius">
+                    <h2 style="color:#141823; text-align:center;">Welcome to Slippi POS</h2>
+                    <div class="loginboxinner radius">
+                        <div class="loginheader">
+                            <h4 class="title">Slippi POS to help manage your business. </h4>
+                        </div>
+                        <!--loginheader-->
+                        <div class="loginform">
+                            <form id="login" action="validateLogin" method="post">
+                                <p>
+                                    <input type=text id="username" name="username" placeholder="Username" class="radius" autofocus/>
+
+                                </p>
+
+                                <p>
+                                    <input type=password id="password" name="password" placeholder="Password" class="radius" />
+                                </p>
+                                <input style=" margin-bottom: 5%;
+                                       background: #5870A8; background-image:-webkit-linear-gradient(top, #637BAD, #4F67A4); padding: 10px 20px; font-size: 18px; border: 1px solid #1D3871; letter-spacing: 1px; width: 420px; line-height:30px; font-family:	'Helvetica Neue', Helvetica, Arial, sans-serif;
+                                       -moz-box-shadow: 1px 1px 3px #1D3871; -webkit-box-shadow: 1px 1px 3px #1D3871; box-shadow: 1px 1px 3px #1D3871; cursor: pointer;
+                                       " type="submit"  value="Login" name="login">
+                            </form>
+                            <form action="register.jsp">
+                                <input type="submit" value="Sign Up for Slippi POS" style=" margin-bottom: 5%;
+                                       background: #5870A8; background-image:-webkit-linear-gradient(top, #637BAD, #4F67A4); padding: 10px 20px; font-size: 18px; border: 1px solid #1D3871; letter-spacing: 1px; width: 420px; line-height:30px; font-family:	'Helvetica Neue', Helvetica, Arial, sans-serif;
+                                       -moz-box-shadow: 1px 1px 3px #1D3871; -webkit-box-shadow: 1px 1px 3px #1D3871; box-shadow: 1px 1px 3px #1D3871; cursor: pointer;
+                                       " />
+                            </form>
+                            
+
+
+
+                        </div>
+                        <!--loginform-->
+                    </div>
+                    <!--loginboxinner-->
+                </div>
+
+
+            </div>
+        </div>
+    </body>
+</html>
